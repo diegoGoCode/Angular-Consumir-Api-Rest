@@ -1,0 +1,55 @@
+<div>
+    <div *ngFor="let error of errores">
+        <div class="alert alert-danger p-1">{{error}}</div>
+    </div>
+</div>
+<div class="card bg-dark text-white my-2">
+    <div class="card-header" *ngIf="!cliente.id">{{titulo}}</div>
+    <div class="card-header" *ngIf="cliente.id">Editar Cliente</div>
+    <div class="card-body">
+        <form #clienteForm="ngForm">
+            <div class="form-group row">
+                <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="cliente.nombre" name="nombre" #nombre="ngModel"> <!--required minlength maxlength-->
+                    <!--<div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                        <div *ngIf="nombre.errors.required">El nombre es requerido.</div>
+                        <div *ngIf="nombre.errors.minlength">El nombre debe tener como minimo 4 cracteres.</div>
+                        <div *ngIf="nombre.errors.maxlength">El nombre no puede tener mas de 80 caracteres</div>
+                    </div>-->
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="apellido" class="col-form-label col-sm-2">Apellido</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="cliente.apellido" name="apellido" #apellido="ngModel"> <!--required minlength maxlength-->
+                    <!--<div class="alert alert-danger" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
+                        <div *ngIf="apellido.errors.required">El apellido es requerido.</div>
+                        <div *ngIf="apellido.errors.minlength">El apellido debe tener como minimo 4 cracteres.</div>
+                        <div *ngIf="apellido.errors.maxlength">El apellido no puede tener mas de 80 caracteres</div>
+                    </div>-->
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="apellido" class="col-form-label col-sm-2">Email</label>
+                <div class="col-sm-6">
+                    <input type="email" class="form-control" [(ngModel)]="cliente.email" name="email" required maxlength="320" email #email="ngModel"> <!--required maxlength email-->
+                    <!--<div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+                        <div *ngIf="email.errors.required">El email es requerido.</div>
+                        <div *ngIf="email.errors.maxlength">El email no puede superar los 320 caracteres</div>
+                        <div *ngIf="email.errors.email">El formato del email es invalido</div>
+                    </div>-->
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <button type="submit" class="btn btn-primary" role="button" (click)="create()" *ngIf="!cliente.id; else elseBlock">Crear</button> <!--[disabled]="!clienteForm.form.valid"-->
+                    <ng-template #elseBlock>
+                        <button type="submit" class="btn btn-primary" role="button" (click)="update()">Actualizar</button> <!--[disabled]="!clienteForm.form.valid"-->
+                    </ng-template>
+                    <button class="btn btn-danger mx-2" role="button" [routerLink]="['/clientes']" routerLinkActive="router-link-active" >Cancelar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
