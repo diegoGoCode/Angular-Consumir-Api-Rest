@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="apellido" class="col-form-label col-sm-2">Email</label>
+                <label for="email" class="col-form-label col-sm-2">Email</label>
                 <div class="col-sm-6">
                     <input type="email" class="form-control" [(ngModel)]="cliente.email" name="email" required maxlength="320" email #email="ngModel"> <!--required maxlength email-->
                     <!--<div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
@@ -39,6 +39,14 @@
                         <div *ngIf="email.errors.maxlength">El email no puede superar los 320 caracteres</div>
                         <div *ngIf="email.errors.email">El formato del email es invalido</div>
                     </div>-->
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="createAt" class="col-form-label col-sm-2">Fecha</label>
+                <div class="col-sm-6">
+                    <input [matDatepicker]="miDatepicker" class="form-control" [(ngModel)]="cliente.createAt" name="createAt" style="display: inline; width: 150px;">
+                    <mat-datepicker-toggle [for]="miDatepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #miDatepicker></mat-datepicker>
                 </div>
             </div>
             <div class="form-group row">

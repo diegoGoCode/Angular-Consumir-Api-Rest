@@ -19,7 +19,10 @@ export class PaginatorComponent implements OnInit, OnChanges {
   } 
 
   ngOnChanges(changes: SimpleChanges){
-    
+    let paginadorActualizado = changes['paginador'];
+    if(paginadorActualizado.previousValue){
+      this.initPaginator(); 
+    }
   }
 
   private initPaginator(): void{
